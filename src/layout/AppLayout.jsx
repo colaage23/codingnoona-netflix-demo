@@ -1,14 +1,11 @@
-import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const AppLayout = () => {
-  const [search, setSearch] = useState("");
-
   return (
     <div className="app-shell">
       <Navbar expand="lg" className="app-navbar">
@@ -42,11 +39,9 @@ const AppLayout = () => {
                 placeholder="Search"
                 className="app-search__input"
                 aria-label="Search"
-                value={search}
-                onChange={(event) => setSearch(event.target.value)}
               />
               <Button
-                type="submit"
+                type="button"
                 variant="outline-danger"
                 className="app-search__button"
               >
