@@ -1,0 +1,52 @@
+.app-shell {
+  min-height: 100vh;
+  background: #000000;
+}
+
+.app-navbar__inner {
+  gap: 1rem;
+}
+
+.app-logo__image {
+  display: block;
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.app-nav__link {
+  color: #f5f5f1;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.app-nav__link:hover,
+.app-nav__link:focus,
+.app-nav__link:active {
+  opacity: 0.6;
+  text-decoration: none;
+}
+
+.app-search {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.app-search__input {
+  background-color: rgb(37, 37, 37) !important;
+  border: 1px solid gray !important;
+  color: white !important;
+}
+
+.app-search__input::placeholder {
+  color: white !important;
+  opacity: 0.4 !important;
+}
