@@ -1,6 +1,13 @@
 .app-shell {
   min-height: 100vh;
   background: #000000;
+  padding: 0px 15px;
+}
+
+.app-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .app-navbar__inner {
