@@ -31,11 +31,11 @@ const TopRatedMovieSlide = () => {
 
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 2100 },
-      items: 8,
+      breakpoint: { max: 3000, min: 1800 },
+      items: 7,
     },
     tablet: {
-      breakpoint: { max: 2100, min: 800 },
+      breakpoint: { max: 1800, min: 800 },
       items: 4,
     },
     mobile: {
