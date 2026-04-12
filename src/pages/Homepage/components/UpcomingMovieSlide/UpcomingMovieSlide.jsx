@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
+import { useUpcomingMoviesQuery } from "../../../../hooks/useUpcomingMovies";
 import { Alert } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import MovieCard from "../MovieCard/MovieCard";
-import "./PopularMovieSlide.style.css";
+import "./UpcomingMovieSlide.style.css";
 import { useMovieGenresQuery } from "../../../../hooks/useMovieGenre";
 
 const CarouselComponent = Carousel?.default ?? Carousel;
 
-const PopularMovieSlide = () => {
-  const { data: popular, isLoading, error, isError } = usePopularMoviesQuery();
+const UpcomingMovieSlide = () => {
+  const { data: popular, isLoading, error, isError } = useUpcomingMoviesQuery();
   const { data: genres } = useMovieGenresQuery();
 
   const [selectedMovieId, setSelectedMovieId] = useState(null);
@@ -46,7 +46,7 @@ const PopularMovieSlide = () => {
 
   return (
     <div>
-      <h3 style={{ marginTop: 15, fontWeight: "bold" }}>Popular Movies</h3>
+      <h3 style={{ marginTop: 15, fontWeight: "bold" }}>Upcoming Movies</h3>
       <CarouselComponent
         infinite={true}
         centerMode={true}
@@ -70,4 +70,4 @@ const PopularMovieSlide = () => {
   );
 };
 
-export default PopularMovieSlide;
+export default UpcomingMovieSlide;

@@ -24,7 +24,7 @@ const MovieCard = ({ movie, genres, isActive, onSelect }) => {
   }, []);
 
   useEffect(() => {
-    const slideItem = cardRef.current?.closest(".movie-silder");
+    const slideItem = cardRef.current?.closest(".movie-slider");
 
     if (!slideItem) {
       return;
@@ -104,8 +104,8 @@ const MovieCard = ({ movie, genres, isActive, onSelect }) => {
           })}
         </div>
         <div>
-          <div>평점 : {movie.vote_average}</div>
-          <div>인기도 : {movie.popularity}</div>
+          <div>평점 : {movie.vote_average?.toFixed(2)}</div>
+          <div>인기도 : {movie.popularity?.toFixed(2)}</div>
           <div>{movie.adult ? "성인용" : ""}</div>
         </div>
       </div>
