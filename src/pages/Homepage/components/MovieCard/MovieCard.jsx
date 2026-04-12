@@ -1,9 +1,43 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Badge } from "react-bootstrap";
 import "./MovieCard.style.css";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, genres, isActive, onSelect }) => {
+  const [isMobileView, setIsMobileView] = useState(false);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(max-width: 768px), (pointer: coarse)",
+    );
+    const updateIsMobileView = () => setIsMobileView(mediaQuery.matches);
+
+    updateIsMobileView();
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", updateIsMobileView);
+      return () => mediaQuery.removeEventListener("change", updateIsMobileView);
+    }
+
+    mediaQuery.addListener(updateIsMobileView);
+    return () => mediaQuery.removeListener(updateIsMobileView);
+  }, []);
+
+  useEffect(() => {
+    const slideItem = cardRef.current?.closest(".movie-silder");
+
+    if (!slideItem) {
+      return;
+    }
+
+    slideItem.style.zIndex = isActive ? "300" : "1";
+  }, [isActive]);
+
   const handleMouseMove = (e) => {
+    if (isMobileView) {
+      return;
+    }
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -27,32 +61,52 @@ const MovieCard = ({ movie }) => {
     }
   };
 
+  const handleCardClick = () => {
+    if (!isMobileView || !onSelect) {
+      return;
+    }
+
+    onSelect(movie?.id);
+  };
+
+  const mobileOverlayStyle = isMobileView
+    ? { opacity: isActive ? 1 : 0 }
+    : undefined;
+
+  const mobileOverlay2Style = isMobileView
+    ? { opacity: 0, display: "none" }
+    : undefined;
+
   return (
     <div
+      ref={cardRef}
       style={{
         backgroundImage:
           "url(" +
           `https://www.themoviedb.org/t/p/w1066_and_h600_bestv2${movie?.poster_path}` +
           ")",
       }}
-      className="movie-card"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      className={`movie-card${isMobileView && isActive ? " is-active" : ""}`}
+      onMouseMove={isMobileView ? undefined : handleMouseMove}
+      onMouseLeave={isMobileView ? undefined : handleMouseLeave}
+      onClick={handleCardClick}
     >
-      <div className="overlay2" />
-      <div className="overlay">
-        <h1>{movie?.title}</h1>
-        {(movie?.genre_ids ?? []).map((id) => {
-          return (
-            <Badge bg="danger" style={{ marginRight: 5 }} key={id}>
-              {id}
-            </Badge>
-          );
-        })}
+      <div className="overlay2" style={mobileOverlay2Style} />
+      <div className="overlay" style={mobileOverlayStyle}>
+        <h2>{movie?.title}</h2>
         <div>
-          <div>{movie.vote_average}</div>
-          <div>{movie.popularity}</div>
-          <div>{movie.adult ? "Adult" : "Not Adult"}</div>
+          {(movie?.genre_ids ?? []).map((id) => {
+            return (
+              <Badge bg="danger" style={{ marginRight: 5 }} key={id}>
+                {genres?.find((genre) => genre.id === id)?.name ?? id}
+              </Badge>
+            );
+          })}
+        </div>
+        <div>
+          <div>평점 : {movie.vote_average}</div>
+          <div>인기도 : {movie.popularity}</div>
+          <div>{movie.adult ? "성인용" : ""}</div>
         </div>
       </div>
     </div>

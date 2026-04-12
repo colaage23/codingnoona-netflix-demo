@@ -7,10 +7,13 @@
   transition: transform 0.15s ease;
   border-radius: 8px;
   position: relative;
+  z-index: 1;
 }
 
 .overlay {
   position: absolute;
+  display: flex;
+  flex-direction: column;
   top: 0;
   left: 0;
   z-index: 1;
@@ -24,6 +27,7 @@
   overflow-wrap: break-word;
   padding: 8px;
   border-radius: 8px;
+  gap: 5px;
 }
 
 .overlay2 {
@@ -45,5 +49,15 @@
 }
 
 .movie-card:hover .overlay2 {
+  opacity: 1;
+}
+
+.movie-card.is-active {
+  transform: scale(1.12);
+  z-index: 200;
+}
+
+.movie-card.is-active .overlay,
+.movie-card.is-active .overlay2 {
   opacity: 1;
 }

@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
 import { Alert } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import MovieCard from "../MovieCard/MovieCard";
 import "./PopularMovieSlide.style.css";
+import { useMovieGenresQuery } from "../../../../hooks/useMovieGenre";
 
 const CarouselComponent = Carousel?.default ?? Carousel;
 
 const PopularMovieSlide = () => {
   const { data, isLoading, error, isError } = usePopularMoviesQuery();
+  const { data: genres } = useMovieGenresQuery();
+
+  const [selectedMovieId, setSelectedMovieId] = useState(null);
+
+  const handleSelectMovie = (movieId) => {
+    setSelectedMovieId((prevSelectedMovieId) =>
+      prevSelectedMovieId === movieId ? null : movieId,
+    );
+  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -45,7 +55,15 @@ const PopularMovieSlide = () => {
         responsive={responsive}
       >
         {data?.results.map((movie, index) => {
-          return <MovieCard movie={movie} key={index} />;
+          return (
+            <MovieCard
+              movie={movie}
+              key={movie?.id ?? index}
+              isActive={selectedMovieId === movie?.id}
+              onSelect={handleSelectMovie}
+              genres={genres}
+            />
+          );
         })}
       </CarouselComponent>
     </div>
