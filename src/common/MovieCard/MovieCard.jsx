@@ -98,7 +98,7 @@ const MovieCard = ({ movie, genres, isActive, onSelect }) => {
           {(movie?.genre_ids ?? []).map((id) => {
             return (
               <Badge bg="danger" style={{ marginRight: 5 }} key={id}>
-                {genres?.find((genre) => genre.id === id)?.name ?? id}
+                {genres?.find((genre) => genre.id === id)?.name ?? "Unknown"}
               </Badge>
             );
           })}
