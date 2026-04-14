@@ -93,7 +93,16 @@ const MovieCard = ({ movie, genres, isActive, onSelect }) => {
     >
       <div className="overlay2" style={mobileOverlay2Style} />
       <div className="overlay" style={mobileOverlayStyle}>
-        <h2>{movie?.title}</h2>
+        <h2
+          style={{
+            display: "-webkit-box",
+            WebkitLineClamp: 4,
+            WebkitBoxOrient: "vertical",
+            overflow: "hidden",
+          }}
+        >
+          {movie?.title}
+        </h2>
         <div>
           {(movie?.genre_ids ?? []).map((id) => {
             return (
@@ -106,7 +115,9 @@ const MovieCard = ({ movie, genres, isActive, onSelect }) => {
         <div>
           <div>평점 : {movie.vote_average?.toFixed(2)}</div>
           <div>인기도 : {movie.popularity?.toFixed(2)}</div>
-          <div>{movie.adult ? "성인용" : ""}</div>
+          <div style={{ color: "firebrick", fontSize: 12 }}>
+            {movie.adult ? "Only Adult" : ""}
+          </div>
         </div>
       </div>
     </div>

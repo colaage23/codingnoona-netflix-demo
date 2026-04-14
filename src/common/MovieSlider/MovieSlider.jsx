@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./MovieSlider.style.css";
 import Carousel from "react-multi-carousel";
-import { Alert } from "react-bootstrap";
+import { Alert, Spinner } from "react-bootstrap";
 import MovieCard from "../MovieCard/MovieCard";
 import { useMovieGenresQuery } from "../../hooks/useMovieGenre";
 import "react-multi-carousel/lib/styles.css";
@@ -26,7 +26,13 @@ const MovieSlider = ({
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Spinner
+        animation="border"
+        role="status"
+        style={{ display: "block", margin: "300px auto" }}
+      />
+    );
   }
 
   if (isError) {

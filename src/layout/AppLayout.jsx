@@ -1,11 +1,21 @@
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 const AppLayout = () => {
+  const navigate = useNavigate();
+  const [keyword, setKeyword] = useState("");
+
+  const searchByKeyword = (e) => {
+    e.preventDefault();
+    navigate(`movies?q=${encodeURIComponent(keyword)}`);
+    setKeyword("");
+  };
+
   return (
     <div className="app-shell">
       <Navbar expand="lg" className="app-navbar">
@@ -33,15 +43,17 @@ const AppLayout = () => {
               </NavLink>
             </Nav>
 
-            <Form className="app-search">
+            <Form className="app-search" onSubmit={searchByKeyword}>
               <Form.Control
                 type="search"
                 placeholder="Search"
                 className="app-search__input"
                 aria-label="Search"
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
               />
               <Button
-                type="button"
+                type="submit"
                 variant="outline-danger"
                 className="app-search__button"
               >
