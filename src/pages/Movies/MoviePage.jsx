@@ -14,7 +14,7 @@ import "./MoviePage.style.css";
 const ReactPaginateComponent = ReactPaginate?.default ?? ReactPaginate;
 
 const MoviePage = () => {
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams();
   const [page, setPage] = useState(1);
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const [isAdultOnly, setIsAdultOnly] = useState(false);
@@ -68,60 +68,64 @@ const MoviePage = () => {
       <Container>
         <Row>
           <>
-            <Col lg={3} xs={12} className="mb-4">
-              <div className="movie-filter-box">
-                <h3 className="movie-filter-title">필터</h3>
+            {query.get("q") ? (
+              <Col lg={3} xs={12} className="mb-4">
+                <div className="movie-filter-box">
+                  <h3 className="movie-filter-title">필터</h3>
 
-                <div className="movie-filter-group">
-                  <div className="movie-filter-label">언어</div>
-                  <Form.Select
-                    className="movie-filter-select"
-                    value={language?.value ?? ""}
-                    onChange={(e) => {
-                      const selectedLanguage = languageOptions.find(
-                        (option) => option.value === e.target.value,
-                      );
-                      setLanguage(selectedLanguage ?? languageOptions[0]);
-                    }}
-                  >
-                    {languageOptions.map((option) => (
-                      <option
-                        key={option.value || "all-languages"}
-                        value={option.value}
-                      >
-                        {option.label}
-                      </option>
-                    ))}
-                  </Form.Select>
-                </div>
+                  <div className="movie-filter-group">
+                    <div className="movie-filter-label">언어</div>
+                    <Form.Select
+                      className="movie-filter-select"
+                      value={language?.value ?? ""}
+                      onChange={(e) => {
+                        const selectedLanguage = languageOptions.find(
+                          (option) => option.value === e.target.value,
+                        );
+                        setLanguage(selectedLanguage ?? languageOptions[0]);
+                      }}
+                    >
+                      {languageOptions.map((option) => (
+                        <option
+                          key={option.value || "all-languages"}
+                          value={option.value}
+                        >
+                          {option.label}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </div>
 
-                <div className="movie-filter-group">
-                  <div className="movie-filter-label">출시년도</div>
-                  <Form.Select
-                    className="movie-filter-select"
-                    value={releaseYear}
-                    onChange={(e) => setReleaseYear(e.target.value)}
-                  >
-                    {releaseYearOptions.map((year) => (
-                      <option key={year.value || "all-years"}>
-                        {year.label}
-                      </option>
-                    ))}
-                  </Form.Select>
-                </div>
+                  <div className="movie-filter-group">
+                    <div className="movie-filter-label">출시년도</div>
+                    <Form.Select
+                      className="movie-filter-select"
+                      value={releaseYear}
+                      onChange={(e) => setReleaseYear(e.target.value)}
+                    >
+                      {releaseYearOptions.map((year) => (
+                        <option key={year.value || "all-years"}>
+                          {year.label}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </div>
 
-                <div className="movie-filter-group movie-filter-group-bottom">
-                  <Form.Check
-                    type="switch"
-                    id="adult-filter-switch"
-                    className="movie-filter-switch"
-                    label={isAdultOnly ? "Adult" : "All audiences"}
-                    checked={isAdultOnly}
-                    onChange={() => setIsAdultOnly((prev) => !prev)}
-                  />
+                  <div className="movie-filter-group movie-filter-group-bottom">
+                    <Form.Check
+                      type="switch"
+                      id="adult-filter-switch"
+                      className="movie-filter-switch"
+                      label={isAdultOnly ? "Adult" : "All audiences"}
+                      checked={isAdultOnly}
+                      onChange={() => setIsAdultOnly((prev) => !prev)}
+                    />
+                  </div>
                 </div>
-              </div>
-            </Col>
+              </Col>
+            ) : (
+              <Col lg={3} xs={12} className="mb-4" />
+            )}
             {data?.results.length === 0 ? (
               <div
                 style={{
