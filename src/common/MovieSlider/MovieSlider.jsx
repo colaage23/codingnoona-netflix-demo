@@ -8,14 +8,7 @@ import "react-multi-carousel/lib/styles.css";
 
 const CarouselComponent = Carousel?.default ?? Carousel;
 
-const MovieSlider = ({
-  data,
-  isLoading,
-  error,
-  isError,
-  title,
-  responsive,
-}) => {
+const MovieSlider = ({ data, error, isError, title, responsive }) => {
   const { data: genres } = useMovieGenresQuery();
   const [selectedMovieId, setSelectedMovieId] = useState(null);
 
@@ -24,17 +17,6 @@ const MovieSlider = ({
       prevSelectedMovieId === movieId ? null : movieId,
     );
   };
-
-  if (isLoading) {
-    return (
-      <Spinner
-        animation="border"
-        role="status"
-        style={{ display: "block", margin: "300px auto" }}
-      />
-    );
-  }
-
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
   }

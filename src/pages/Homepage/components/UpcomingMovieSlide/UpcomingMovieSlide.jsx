@@ -10,7 +10,6 @@ const UpcomingMovieSlide = () => {
     <div>
       <MovieSlider
         data={popular}
-        isLoading={isLoading}
         error={error}
         isError={isError}
         title="Upcoming Movies"

@@ -4,17 +4,8 @@ import { Alert, Spinner } from "react-bootstrap";
 import "./Banner.style.css";
 
 const Banner = () => {
-  const { data, isLoading, isError, error } = usePopularMoviesQuery();
+  const { data, isError, error } = usePopularMoviesQuery();
 
-  if (isLoading) {
-    return (
-      <Spinner
-        animation="border"
-        role="status"
-        style={{ display: "block", margin: "300px auto" }}
-      />
-    );
-  }
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
   }

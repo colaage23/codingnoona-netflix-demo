@@ -1,0 +1,354 @@
+.movie-detail-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(229, 9, 20, 0.2), transparent 0 35%),
+    linear-gradient(180deg, #111 0%, #0b0b0b 100%);
+  color: #fff;
+}
+
+.movie-detail-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b0b0b;
+}
+
+.movie-detail-error {
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.movie-detail-hero {
+  min-height: 78vh;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.movie-detail-hero__overlay {
+  min-height: 78vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 80px 0 48px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.9) 20%,
+      rgba(0, 0, 0, 0.45) 58%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(11, 11, 11, 0.95) 100%);
+}
+
+.movie-detail-hero__content {
+  min-height: 62vh;
+}
+
+.movie-detail-poster-wrap {
+  max-width: 330px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.movie-detail-poster {
+  width: 100%;
+  display: block;
+}
+
+.movie-detail-copy h1 {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.movie-detail-copy__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.movie-detail-copy__chips span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  font-size: 0.92rem;
+}
+
+.movie-detail-tagline {
+  color: #d1d1d1;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.movie-detail-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.movie-detail-stats div,
+.movie-detail-panel {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  border-radius: 8px;
+}
+
+.movie-detail-stats div {
+  padding: 14px;
+}
+
+.movie-detail-stats strong {
+  display: block;
+  color: #fff;
+  font-size: 1.3rem;
+}
+
+.movie-detail-stats span {
+  color: #b7b7b7;
+  font-size: 0.9rem;
+}
+
+.movie-detail-overview-wrap {
+  max-width: 760px;
+}
+
+.movie-detail-overview {
+  color: #ececec;
+  line-height: 1.7;
+  font-size: 1.04rem;
+  margin-bottom: 0;
+}
+
+.movie-detail-overview.collapsed {
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.movie-detail-overview.expanded {
+  display: block;
+}
+
+.movie-detail-overview-toggle {
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.movie-detail-overview-toggle:hover {
+  color: #e50914;
+}
+
+.movie-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.movie-detail-body {
+  margin-top: 15px;
+  padding-bottom: 48px;
+}
+
+.movie-detail-panel {
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.movie-detail-panel h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.movie-detail-panel p {
+  margin: 0;
+  color: #ddd;
+  line-height: 1.7;
+}
+
+.movie-detail-info-panel {
+  padding: 26px;
+}
+
+.movie-detail-info-block h3 {
+  margin-bottom: 16px;
+}
+
+.movie-detail-genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.movie-detail-genre-pill {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.movie-detail-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.movie-detail-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.movie-detail-detail-item span {
+  color: #a9a9a9;
+  font-size: 0.88rem;
+}
+
+.movie-detail-detail-item strong {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.movie-detail-company-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.movie-detail-company-pill {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(229, 9, 20, 0.16);
+  border: 1px solid rgba(229, 9, 20, 0.34);
+  color: #fff;
+}
+
+.movie-detail-review-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.movie-detail-review-card {
+  padding: 16px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.movie-detail-review-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.movie-detail-review-head strong {
+  display: block;
+  color: #fff;
+}
+
+.movie-detail-review-head span {
+  color: #a9a9a9;
+  font-size: 0.85rem;
+}
+
+.movie-detail-review-rating {
+  height: fit-content;
+}
+
+.movie-detail-review-content {
+  color: #ddd;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.movie-detail-review-content.collapsed {
+  display: -webkit-box;
+  line-clamp: 5;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.movie-detail-review-content.expanded {
+  display: block;
+}
+
+.movie-detail-review-toggle {
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.movie-detail-review-toggle:hover {
+  color: #e50914;
+}
+
+.movie-detail-empty-review {
+  color: #bbb;
+}
+
+@media (max-width: 991px) {
+  .movie-detail-hero,
+  .movie-detail-hero__overlay {
+    min-height: auto;
+  }
+
+  .movie-detail-hero__overlay {
+    padding-top: 110px;
+  }
+
+  .movie-detail-copy {
+    text-align: center;
+  }
+
+  .movie-detail-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .movie-detail-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .movie-detail-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .movie-detail-copy h1 {
+    font-size: 2rem;
+  }
+
+  .movie-detail-panel {
+    padding: 18px;
+  }
+}

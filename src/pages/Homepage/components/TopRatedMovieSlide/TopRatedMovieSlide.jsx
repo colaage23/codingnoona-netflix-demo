@@ -10,7 +10,6 @@ const TopRatedMovieSlide = () => {
     <div>
       <MovieSlider
         data={popular}
-        isLoading={isLoading}
         error={error}
         isError={isError}
         title="TopRated Movies"

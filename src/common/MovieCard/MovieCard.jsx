@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Badge } from "react-bootstrap";
 import "./MovieCard.style.css";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = ({ movie, genres, isActive, onSelect }) => {
   const [isMobileView, setIsMobileView] = useState(false);
   const cardRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(
@@ -62,20 +64,8 @@ const MovieCard = ({ movie, genres, isActive, onSelect }) => {
   };
 
   const handleCardClick = () => {
-    if (!isMobileView || !onSelect) {
-      return;
-    }
-
-    onSelect(movie?.id);
+    navigate(`/movies/${movie?.id}`);
   };
-
-  const mobileOverlayStyle = isMobileView
-    ? { opacity: isActive ? 1 : 0 }
-    : undefined;
-
-  const mobileOverlay2Style = isMobileView
-    ? { opacity: 0, display: "none" }
-    : undefined;
 
   return (
     <div
@@ -91,8 +81,8 @@ const MovieCard = ({ movie, genres, isActive, onSelect }) => {
       onMouseLeave={isMobileView ? undefined : handleMouseLeave}
       onClick={handleCardClick}
     >
-      <div className="overlay2" style={mobileOverlay2Style} />
-      <div className="overlay" style={mobileOverlayStyle}>
+      <div className="overlay2" />
+      <div className="overlay">
         <h2
           style={{
             display: "-webkit-box",

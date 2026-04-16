@@ -20,3 +20,9 @@ export const releaseYearOptions = [
     return { value: String(year), label: String(year) };
   }),
 ];
+
+export const sortOptions = [
+  { value: "", label: "Default" },
+  { value: "popularity.desc", label: "인기도 높은순" },
+  { value: "popularity.asc", label: "인기도 낮은순" },
+];
